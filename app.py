@@ -8,6 +8,7 @@ from langchain.agents.agent_toolkits import SQLDatabaseToolkit
 from sqlalchemy import create_engine
 import sqlite3
 from langchain_groq import ChatGroq
+import os
 
 st.set_page_config(page_title="LangChain: Chat with SQL DB", page_icon="🦜")
 st.title("🦜 LangChain: Chat with SQL DB")
@@ -28,7 +29,7 @@ if radio_opt.index(selected_opt)==1:
 else:
     db_uri=LOCALDB
 
-api_key=st.sidebar.text_input(label="GRoq API Key",type="password")
+api_key=os.getenv('GROQ_API_KEY')
 
 if not db_uri:
     st.info("Please enter the database information and uri")
